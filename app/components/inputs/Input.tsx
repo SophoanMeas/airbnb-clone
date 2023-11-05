@@ -7,6 +7,7 @@ interface InputProps {
     id: string;
     label: string;
     type?: string;
+    min?: number;
     disabled?: boolean;
     formatPrice?: boolean;
     required?: boolean;
@@ -18,6 +19,7 @@ const Input: React.FC<InputProps> = ({
     id,
     label,
     type,
+    min,
     disabled,
     formatPrice,
     required,
@@ -26,13 +28,14 @@ const Input: React.FC<InputProps> = ({
 }) => {
     return (
         <div className="w-full relative">{formatPrice && (
-            <BiDollar size={24} className="text-neutral-700 absolute top-5 left-2" />
+            <BiDollar size={20} className="text-neutral-700 absolute top-4 left-2" />
         )}
             <input
                 id={id}
                 disabled={disabled}
                 {...register(id, { required })}
                 placeholder=" "
+                min={min}
                 type={type}
                 className={`peer w-full h-[16px] p-4 pt-6 font-light bg-white border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed 
                 ${formatPrice ? 'pl-9' : 'pl-4'}
